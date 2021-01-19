@@ -28,7 +28,7 @@ print(lista_pares[:3])#[2,4,6]
 print(lista_pares[1:])#[4, 6, 8, 0]
 print(lista_pares[:4])#[2,4,6,8]
 print(lista_pares[:])#todos los elementos
-######
+
 arreglo = lista_pares # igualando a la lista
 arreglo2 = lista_pares[:]#obteniendo los valores del arreglo
 print(arreglo)#[2, 4, 6, 8, 0]
