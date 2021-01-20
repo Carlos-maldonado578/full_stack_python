@@ -125,6 +125,7 @@ print(SPMML(lista))
 #Lista inversa : crea una función que tome una lista y la devuelva con los valores invertidos.
 #Haz esto sin crear una segunda lista. (Se sabe que este desafío aparece durante las entrevistas técnicas básicas).
 #Ejemplo: reverse_list ([37,2,1, -9]) debería devolver [-9,1,2,37]
-list=[37,2,1, -9]
+
+list = [37, 2, 1, -9]
 list.reverse()
 print(list)
