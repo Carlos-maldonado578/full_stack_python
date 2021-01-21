@@ -32,6 +32,8 @@ roro = User("Rodrigo Salas", "salas@python.com")
 # guido.make_withdrawal(100)
 # print(guido.display_user_balance())
 
+print('Métodos encadenados')
+
 guido.make_deposit(100).make_deposit(200).make_deposit(300).make_withdrawal(50).display_user_balance()
 print()
 monty.make_deposit(200).make_deposit(100).make_withdrawal(100).display_user_balance()
