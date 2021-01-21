@@ -15,3 +15,9 @@ fave_food1 = "sushi"
 fave_food2 = "pizza"
 print('Me encanta comer {} y {}'.format(fave_food1,fave_food2)) # con .format()
 print( f'Me encanta comer {fave_food1} y {fave_food2}' ) # con una cadena f
+
+# python code below!
+arr = [1,3,5,7]
+arr[0], arr[1] = arr[1], arr[0]
+
+print(arr)

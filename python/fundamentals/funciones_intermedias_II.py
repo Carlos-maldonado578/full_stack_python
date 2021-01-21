@@ -83,4 +83,3 @@ def printInfo(dojo):
         print(len(dojo[info]), info, dojo[info])
 
 printInfo(dojo)
-
