@@ -6,34 +6,34 @@ class User:
 
     def make_deposit(self, amount):
         self.account_balance += amount
+        return self
 
     def make_withdrawal (self, amount):
         if self.account_balance >= amount:
             self.account_balance -= amount
         else:
             print("Saldo insuficiente")
-
+        return self
     def display_user_balance (self):
-        return self.name, self.account_balance
+        print(self.name, self.account_balance)
+        return self
+        #return self
 
 
 
+#Instancia de Objeto
 guido = User("Guido Van Rossum", "guido@python.com")
 monty = User("Monty Python", "monty@python.com")
-roro = User("Monty Python", "monty@python.com")
+roro = User("Rodrigo Salas", "salas@python.com")
 
-guido.make_deposit(100)
-guido.make_deposit(200)
-guido.make_deposit(200)
-guido.make_withdrawal(100)
-print(guido.display_user_balance())
+# guido.make_deposit(100)
+# guido.make_deposit(200)
+# guido.make_deposit(200)
+# guido.make_withdrawal(100)
+# print(guido.display_user_balance())
+
+guido.make_deposit(100).make_deposit(200).make_deposit(300).make_withdrawal(50).display_user_balance()
 print()
-monty.make_deposit(200)
-monty.make_deposit(100)
-monty.make_withdrawal(100)
-print(monty.display_user_balance())
+monty.make_deposit(200).make_deposit(100).make_withdrawal(100).display_user_balance()
 print()
-roro.make_deposit(200)
-roro.make_withdrawal(100)
-roro.make_withdrawal(50)
-print(roro.display_user_balance())
+roro.make_deposit(200).make_withdrawal(100).make_withdrawal(50).display_user_balance()
