@@ -1,7 +1,7 @@
 class Cuenta_banco:
-	def __init__(self, num, inte):
+	def __init__(self, num, inte, count=0):
 		self.numero_cuenta = num
-		self.cuenta = 0
+		self.cuenta = count
 		self.interes = inte
 
 	def hacer_deposito(self, monto):

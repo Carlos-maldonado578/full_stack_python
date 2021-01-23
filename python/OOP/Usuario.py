@@ -14,7 +14,7 @@ class User:
         else:
             print("Saldo insuficiente")
         return self
-    def display_user_balance (self):
+    def display_user_balance(self):
         print(self.name, self.account_balance)
         return self
         #return self
