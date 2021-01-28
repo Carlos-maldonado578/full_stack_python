@@ -1,0 +1,18 @@
+*{text-align: center}
+
+body{
+    background-color: aquamarine;
+}
+h2{
+    border: 1px black solid;
+    width: 500px;
+    display: inline-block;
+    font-family: "Arial Narrow";
+}
+
+div{
+    border: 1px black solid;
+    width: 500px;
+    display: inline-block;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+}
