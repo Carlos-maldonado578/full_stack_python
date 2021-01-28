@@ -1,9 +1,10 @@
 from django.shortcuts import render,HttpResponse, redirect
+from django.http import JsonResponse
 
 def root(request):
     return redirect("/blog")
 
-def index(request):
+def blogs(request):
     return HttpResponse('marcador de posición para mostrar más tarde una lista de todos los blogs')
 
 def new(request):
@@ -15,14 +16,17 @@ def create(request):
 def show(request, _numero):
     return HttpResponse(f'marcador de posición para mostrar el numero de blog {_numero}')
 
-def editar(request, _numero):
-    return HttpResponse(f'Muestra la cadena: marcador de posición para mostrar el numero de blog {_numero}')
+def edit(request, _numero):
+    return HttpResponse(f'Marcador de posición para editar el blog número {_numero}')
 
 def delete(request, _numero):
     return redirect('/blog')
 
 
 def json(request):
-    return render(request, 'json.html')
-
+    content = {
+        'num_blogs': 2,
+        'blogs':['blog de la fena', 'Empleos publicos']
+    }
+    return JsonResponse(content)
 # Create your views here.
