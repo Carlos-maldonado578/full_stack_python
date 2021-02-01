@@ -1,0 +1,9 @@
+*{
+    text-align: center;
+}
+
+.content{
+    border: 1px solid black;
+    width: 400px;
+    display: inline-block;
+}
