@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ninja Money</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/ninja_style.css' %}">
+</head>
+<body>
+Your Gold: <p class="quantity">{{ request.session.counter }}</p><br>
+    <div id="content">
+        <form id="farm" action="/ninja_gold/farm" method="post">
+            {% csrf_token %}
+            <h2>Farm</h2>
+            (earns 10 - 20 golds)
+            <br><br>
+            <button class="borderLeftRight" type="submit">Find Gold!</button>
+        </form>
+        <form id="cave" action="/ninja_gold/cave" method="post">
+            {% csrf_token %}
+            <h2>Cave</h2>
+            (earns 5 - 10 golds)
+            <br><br>
+            <button class="borderLeftRight" type="submit">Find Gold!</button>
+        </form>
+        <form id="house" action="/ninja_gold/house" method="post">
+                {% csrf_token %}
+                <h2>House</h2>
+                (earns 2 - 5 golds)
+                <br><br>
+                <button class="borderLeftRight" type="submit">Find Gold!</button>
+        </form>
+        <form id="casino" action="/ninja_gold/casino" method="post">
+                {% csrf_token %}
+                <h2>Casino</h2>
+                (earns/takes 0 - 50 golds)
+                <br><br>
+                <button class="borderLeftRight" type="submit">Find Gold!</button>
+        </form>
+    </div>
+Activities:
+<div class="activities">
+    <p>
+        <ul>
+            {% for foo in request.session.my_list %}
+                <li>{{ foo }}</li>
+            {% endfor %}<br>
+        </ul>
+    </p>
+</div>
+</body>
+</html>
