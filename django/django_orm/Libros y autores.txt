@@ -1,0 +1,175 @@
+from django.db import models
+
+class Book(models.Model):
+	title = models.CharField(max_length=255)
+	desc = models.TextField(null=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+
+
+class Authors(models.Model):
+	first_name = models.CharField(max_length=255)
+	last_name = models.CharField(max_length=255)
+	book = models.ManyToManyField(Book, related_name="authors")
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+
+			Actividades:
+1.Consulta: crea 5 libros con los siguientes nombres: C Sharp, Java, Python, PHP, Ruby:
+from books_authors_app.models import Book, Authors
+
+Book.objects.create(title = "C Sharp")
+Book.objects.create(title = "Java")
+Book.objects.create(title = "Python")
+Book.objects.create(title = "PHP")
+Book.objects.create(title = "Ruby")
+
+2.Consulta: Crea 5 autores diferentes: Jane Austen, Emily Dickinson, Fyodor Dostoevksy, William Shakespeare, Lau Tzu:
+
+Authors.objects.create(first_name = "Jane", last_name = "Austen")
+Authors.objects.create(first_name = "Emily", last_name = "Dickinson")
+Authors.objects.create(first_name = "Fyodor", last_name = "Dostoevksy")
+Authors.objects.create(first_name = "William", last_name = "Shakespeare")
+Authors.objects.create(first_name = "Lau", last_name = "Tzu")
+
+3.Agregue un nuevo campo de texto en la tabla de autores llamado 'notas':
+
+notes = models.TextField(null=True)
+
+4.Cree y ejecute los archivos de migración para actualizar la tabla en su base de datos:
+
+(project_venv) C:\python_stack\django\django_orm\book_authors_proj>python manage.py makemigrations
+Migrations for 'books_authors_app':
+  books_authors_app\migrations\0002_authors_notes.py
+    - Add field notes to authors
+
+(project_venv) C:\python_stack\django\django_orm\book_authors_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, books_authors_app, contenttypes, sessions
+Running migrations:
+  Applying books_authors_app.0002_authors_notes... OK
+
+
+5.Consulta: cambie el nombre del libro de C Sharp a C #:
+
+sharp = Book.objects.get(id=1)
+sharp.title = "C#"
+sharp.save()
+
+6.Consulta: cambie el nombre del cuarto autor a Bill:
+
+autor4 = Authors.objects.get(id=4)
+autor4.first_name = "Bill"
+autor4.save()
+
+7.Consulta: Asigna el primer autor a los primeros 2 libros:
+
+this_author = Authors.objects.get(id=1)
+this_book = Book.objects.get(id=1)
+
+this_author.book.add(this_book)
+
+this_author = Authors.objects.get(id=1)
+this_book = Book.objects.get(id=2)
+
+this_author.book.add(this_book)
+
+8.Consulta: Asigne el segundo autor a los primeros 3 libros:
+
+this_author = Authors.objects.get(id=2)
+this_book = Book.objects.get(id=1)
+this_book = Book.objects.get(id=2)
+this_book = Book.objects.get(id=3)
+
+this_author.book.add(this_book)
+
+9.Consulta: Asigna el tercer autor a los primeros 4 libros:
+
+this_author = Authors.objects.get(id=3)
+this_book = Book.objects.get(id=1)
+this_book = Book.objects.get(id=2)
+this_book = Book.objects.get(id=3)
+this_book = Book.objects.get(id=4)
+
+this_author.book.add(this_book)
+
+10.Consulta: Asigne el cuarto autor a los primeros 5 libros (o en otras palabras, todos los libros):
+
+this_author = Authors.objects.get(id=4)
+this_book = Book.objects.get(id=1)
+this_book = Book.objects.get(id=2)
+this_book = Book.objects.get(id=3)
+this_book = Book.objects.get(id=4)
+this_book = Book.objects.get(id=5)
+
+this_author.book.add(this_book)
+
+11.Consulta: recupera a todos los autores del tercer libro:
+
+book = Book.objects.get(id=3)
+book.authors.all()
+
+>>> for autor in book.authors.all():
+...     print(autor.first_name)
+...
+Emily
+Fyodor
+Bill
+>>>
+
+
+Authors.objects.filter(book__id=3)
+<QuerySet [<Authors: Authors object (2)>, <Authors: Authors object (3)>, <Authors: Authors object (4)>]>
+
+
+>>> for autor in Authors.objects.filter(book__id=3):
+...     print(autor.first_name)
+...
+Emily
+Fyodor
+Bill
+>>>
+
+
+12.Consulta: eliminar al primer autor del tercer libro:
+
+>>> book.authors.first()
+<Authors: Authors object (2)>
+>>> book.authors.first().first_name
+'Emily'
+>>> book.authors.first().id
+2
+
+>>> autor = book.authors.first()
+>>> autor.delete()
+(4, {'books_authors_app.Authors_book': 3, 'books_authors_app.Authors': 1})
+
+
+
+13.Consulta: Agregue el quinto autor como uno de los autores del segundo libro:
+
+this_author = Authors.objects.get(id=5)
+this_book = Book.objects.get(id=2)
+
+
+this_author.book.add(this_book)
+
+14.Consulta: Encuentra todos los libros de los que el tercer autor es parte:
+
+
+autor = Authors.objects.get(id=3)
+autor.book.all()
+
+>>> for autor in autor.book.all():
+...     print(autor.title)
+...
+C#
+Java
+Python
+PHP
+>>>
+
+15.Consulta: Encuentra todos los autores que contribuyeron al quinto libro:
+
+for autor in Authors.objects.filter(book__id=5):
+...     print(autor.first_name)

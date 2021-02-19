@@ -39,14 +39,14 @@ Your Gold: <p class="quantity">{{ request.session.counter }}</p><br>
         </form>
     </div>
 Activities:
-<div class="activities">
-    <p>
-        <ul>
-            {% for foo in request.session.my_list %}
-                <li>{{ foo }}</li>
-            {% endfor %}<br>
-        </ul>
-    </p>
-</div>
+    <div class="activities">
+        <p>
+            <ul>
+                {% for foo in request.session.my_list %}
+                    <li>{{ foo }}</li>
+                {% endfor %}<br>
+            </ul>
+        </p>
+    </div>
 </body>
 </html>

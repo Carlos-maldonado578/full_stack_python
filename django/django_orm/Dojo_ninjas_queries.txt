@@ -1,0 +1,92 @@
+--------- Dojo y Ninjas (Shell) ---------
+1.Consulta: Crea 3 nuevos dojos
+
+	Dojos.objects.create(name = "Sand", city = "Santiago", state = "AL")
+	Dojos.objects.create(name = "Leaf", city = "Copiapo", state = "CA")
+	Dojos.objects.create(name = "Water", city = "Temuco", state = "TX")
+
+2.Consulta: elimina los 3 dojos que acaba de crear:
+
+sand = Dojos.objects.get(id=1)
+sand.delete()
+
+leaf = Dojos.objects.get(id=2)
+leaf.delete()
+
+water = Dojos.objects.get(id=3)
+water.delete()
+
+3.Consulta: Crea 3 dojos más:
+
+	Dojos.objects.create(name = "Mist", city = "Rancagua", state = "RA")
+	Dojos.objects.create(name = "Rock", city = "Villarica", state = "VI")
+	Dojos.objects.create(name = "Metal", city = "Iquique", state = "IQ")
+
+4.Consulta: crea 3 ninjas que pertenecen al primer dojo:
+
+dojo4 = Dojos.objects.get(id=4)
+Ninjas.objects.create(first_name = "Naruto", last_name = "Uzumaki", dojo = dojo4)
+Ninjas.objects.create(first_name = "Sasuke", last_name = "Uchiha", dojo = dojo4)
+Ninjas.objects.create(first_name = "Sakura", last_name = "Haruno", dojo = dojo4)
+
+5.Consulta: crea 3 ninjas que pertenecen al segundo dojo:
+
+dojo5 = Dojos.objects.get(id=5)
+Ninjas.objects.create(first_name = "Boruto", last_name = "Uzumaki", dojo = dojo5)
+Ninjas.objects.create(first_name = "Sarada", last_name = "Uchiha", dojo = dojo5)
+Ninjas.objects.create(first_name = "Mitsuki", last_name = "Haruno", dojo = dojo5)
+
+6.Consulta: crea 3 ninjas que pertenecen al tercer dojo:
+
+dojo6 = Dojos.objects.get(id=6)
+Ninjas.objects.create(first_name = "Shino", last_name = "Aburame", dojo = dojo6)
+Ninjas.objects.create(first_name = "Kiba", last_name = "Inuzuka", dojo = dojo6)
+Ninjas.objects.create(first_name = "Hinata", last_name = "Hyuga", dojo = dojo6)
+
+7.Consulta: recupera todos los ninjas del primer dojo:
+
+>>> for ninja in Ninjas.objects.filter(dojo_id=4):
+...     print(ninja.first_name)
+...
+Naruto
+Sasuke
+Sakura
+
+8.Consulta: recupera todos los ninjas del último dojo:
+
+>>> for ninja in Ninjas.objects.filter(dojo_id=6):
+...     print(ninja.first_name)
+...
+Shino
+Kiba
+Hinata
+>>>
+
+9.Consulta: recupera el último dojo del ninja:
+
+>>> for ninja in Ninjas.objects.filter(dojo_id=6):
+...     print(ninja.dojo)
+...
+Dojos object (6)
+Dojos object (6)
+Dojos object (6)
+
+10.Agrega un nuevo campo de texto llamado "desc" a su clase de Dojo:
+
+class Dojos(models.Model):
+    name = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=2)
+    desc = models.TextField(default="dojo antiguo")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+11.Crea y ejecuta los archivos de migración para actualizar la tabla en su base de datos. Si es necesario, proporcione un valor predeterminado de "dojo antiguo":
+
+	desc = models.TextField(default="dojo antiguo")
+
+12.Consulta: crear un nuevo dojo:
+
+>>> from dojo_ninjas_app.models import Dojos, Ninjas
+>>> Dojos.objects.create(name = "Cloud", city = "Paine", state = "PA")
+<Dojos: Dojos object (7)>

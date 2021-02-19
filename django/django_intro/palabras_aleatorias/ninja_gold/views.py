@@ -1,7 +1,8 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from random import choice
 import random
 import datetime
+
 now = datetime.datetime.now()
 now_hora = now.strftime('(%d/%m/%Y %H:%M:%S)')
 
