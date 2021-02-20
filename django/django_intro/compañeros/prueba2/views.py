@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect #controlar traspaso de datos.
 
 def index(request):
-     return HttpResponse('Marcador de posicion para mostrar más tarde una lista de todos los blogs')
+    return HttpResponse('Marcador de posicion para mostrar más tarde una lista de todos los blogs')
 
 def root(request):
     return redirect('blogs/')
